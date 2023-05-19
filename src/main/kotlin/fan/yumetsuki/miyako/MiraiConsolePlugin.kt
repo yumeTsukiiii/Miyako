@@ -1,5 +1,7 @@
 package fan.yumetsuki.miyako
 
+import fan.yumetsuki.miyako.feature.augustSummon
+import fan.yumetsuki.miyako.feature.autoRepeat
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescription
 import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
 import net.mamoe.mirai.event.globalEventChannel
@@ -16,10 +18,8 @@ object MiyakoPlugin : KotlinPlugin(
         super.onEnable()
         logger.info("fan.yumetsuki.miyako bot 已启动")
         globalEventChannel().subscribeGroupMessages {
-            this.sentBy(2812003614) {
-                logger.info("收到了来自开发者的消息: $it")
-                this.group.sendMessage("你发送了 $it")
-            }
+            augustSummon()
+            autoRepeat()
         }
     }
 
